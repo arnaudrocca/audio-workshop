@@ -1,8 +1,12 @@
-import { Graphics } from 'pixi.js';
-import EventEmitter from './event-emitter';
+import { Graphics } from 'pixi.js'
 
 class AudioGraphics extends Graphics {
 
+    /**
+     * constructor
+     *
+     * @param {obj} app - The app
+     */
     constructor(app) {
 
 		super();
@@ -11,14 +15,28 @@ class AudioGraphics extends Graphics {
 		this.season = this.app.season;
         this.music = this.app.music;
 
-        this.frequencyData = 0;
         this.spectreWidth = 3;
-        this.start = false;
-        this.startEmitted = false;
+        this.scaleFactor = Math.min(this.app.width, this.app.height) / 300;
+
+        this.frequencyData = this.averageAmplitude = 0;
 
     }
 
-    update(dt) {
+    /**
+     * onResize
+     * - Triggered when the window is resized
+     */
+    onResize() {
+
+        this.scaleFactor = Math.min(this.app.width, this.app.height) / 300;
+
+    }
+
+    /**
+     * update
+     * - Triggered on every TweenMax tick
+     */
+    update() {
 
         this.clear();
 
@@ -31,14 +49,13 @@ class AudioGraphics extends Graphics {
 
         // Audio spectre
         for (let i = 0; i < (this.app.width / 2) / (2 * this.spectreWidth); i++) {
-            this.amplitude = this.frequencyData[i];
+            this.amplitude = (this.frequencyData[i] * this.scaleFactor) / 2;
             this.beginFill(this.season.color, this.amplitude / 1000);
             this.drawRect(i * 2 * this.spectreWidth, (this.app.height - this.amplitude) / 2, this.spectreWidth, this.amplitude);
             this.drawRect(this.app.width - this.spectreWidth - (i * 2 * this.spectreWidth), (this.app.height - this.amplitude) / 2, this.spectreWidth, this.amplitude);
         }
 
-        // Middle circles
-        this.scaleFactor = Math.min(this.app.width, this.app.height) / 200;
+        // Circles
         for (let i = 1; i <= 10; i++) {
             this.beginFill(this.season.color, 1 / i);
             this.drawCircle(this.app.width / 2, this.app.height / 2, (this.averageAmplitude * this.scaleFactor) + i);
@@ -46,21 +63,8 @@ class AudioGraphics extends Graphics {
         this.beginFill(0x000000);
         this.drawCircle(this.app.width / 2, this.app.height / 2, this.averageAmplitude * this.scaleFactor);
 
-        // Update the cursor style
-        if (this.averageAmplitude < 0.1 && !this.start) {
-            document.body.style.cursor = 'wait';
-        } else {
-            document.body.style.cursor = 'pointer';
-            this.start = true;
-        }
-
-        if (!this.startEmitted && this.start) {
-            EventEmitter.emit('START', this.start);
-            this.startEmitted = true;
-        }
-
     }
 
 }
 
-export default AudioGraphics;
+export default AudioGraphics

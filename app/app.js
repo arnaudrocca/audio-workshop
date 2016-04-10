@@ -1,8 +1,7 @@
-import Scene from './scene/scene';
-import Season from './lib/season';
-import Music from './lib/music';
-import Emitter from './lib/emitter';
-import EventEmitter from './lib/event-emitter';
+import Scene from './scene/scene'
+import Season from './lib/season'
+import Music from './lib/music'
+import Emitter from './lib/emitter'
 
 class App {
 
@@ -24,7 +23,7 @@ class App {
 		this.scene = new Scene();
 		this.season = new Season();
 		this.music = new Music(this.season);
-		this.emmiter = new Emitter(this);
+		this.emitter = new Emitter(this);
 
 		let root = document.body.querySelector('.app');
 		root.appendChild(this.scene.renderer.view);
@@ -38,13 +37,12 @@ class App {
 	/**
 	 * onResize
 	 * - Triggered when the window is resized
-	 *
-	 * @param {obj} event
 	 */
-	onResize(event) {
+	onResize() {
 
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
+		this.emitter.onResize();
 		this.scene.resize(this.width, this.height);
 
 	}
@@ -63,18 +61,22 @@ class App {
 		this.mouseX = this.event.clientX;
 		this.mouseY = this.event.clientY;
 
+		window.addEventListener('mouseup', this.onMouseUp.bind(this));
+		window.addEventListener('mousemove', this.onMouseMove.bind(this));
+
 	}
 
 	/**
 	 * onMouseUp
 	 * - Triggered when the user releases the click
-	 *
-	 * @param {obj} event
 	 */
-	onMouseUp(event) {
+	onMouseUp() {
 
 		this.mouseDown = false;
 		this.timerMouse = 0;
+
+		window.removeEventListener('mouseup', this.onMouseUp.bind(this));
+		window.removeEventListener('mousemove', this.onMouseMove.bind(this));
 
 	}
 
@@ -93,28 +95,13 @@ class App {
 	}
 
 	/**
-	 * onStartSent
-	 *
-	 * @param {boolean} start
-	 */
-	onStartSent(start) {
-
-		this.start = start;
-
-	}
-
-	/**
 	 * addListeners
 	 */
 	addListeners() {
 
+		TweenMax.ticker.addEventListener('tick', this.update.bind(this));
 		window.addEventListener('resize', this.onResize.bind(this));
 		window.addEventListener('mousedown', this.onMouseDown.bind(this));
-		window.addEventListener('mouseup', this.onMouseUp.bind(this));
-		window.addEventListener('mousemove', this.onMouseMove.bind(this));
-		TweenMax.ticker.addEventListener('tick', this.update.bind(this));
-		if (!this.start)
-			EventEmitter.on('START', this.onStartSent.bind(this));
 
     }
 
@@ -127,27 +114,32 @@ class App {
 		this.DELTA_TIME = Date.now() - this.LAST_TIME;
 		this.LAST_TIME = Date.now();
 
+		if (!this.start && this.music.getAverageAmplitude() > .01) {
+			this.start = true;
+		}
+
 		if (this.start) {
 			this.timer += this.DELTA_TIME / 1000;
+
 			// Reload the page at the end of the music
 			if (this.timer > this.music.audioBuffer.duration) {
 				location.reload();
 			}
-		}
 
-		// Reload the page if the user holds a click
-		if (this.mouseDown) {
-			this.timerMouse += this.DELTA_TIME / 1000;
-			if (this.timerMouse > 1) {
-				location.reload();
+			// Reload the page if the user holds a click
+			if (this.mouseDown) {
+				this.timerMouse += this.DELTA_TIME / 1000;
+				if (this.timerMouse >= 1) {
+					location.reload();
+				}
 			}
 		}
 
-		this.emmiter.update(this.DELTA_TIME);
+		this.emitter.update(this.DELTA_TIME);
 		this.scene.render();
 
 	}
 
 }
 
-export default App;
+export default App

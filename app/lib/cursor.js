@@ -1,7 +1,12 @@
-import { Graphics } from 'pixi.js';
+import { Graphics } from 'pixi.js'
 
 class Cursor extends Graphics {
 
+    /**
+     * constructor
+     *
+     * @param {obj} app - The app
+     */
     constructor(app) {
 
 		super();
@@ -14,27 +19,33 @@ class Cursor extends Graphics {
 
     }
 
+    /**
+     * update
+     * - Triggered on every TweenMax tick
+     *
+     * @param {number} dt
+     */
     update(dt) {
 
         this.clear();
 
         if (this.app.start) {
-
-            if (this.app.timerMouse > 0 && this.app.timerMouse < 1) {
+            if (this.app.mouseDown && this.app.timerMouse < 1) {
                 document.body.style.cursor = 'none';
                 this.beginFill(this.season.color, .5);
                 this.moveTo(this.app.mouseX, this.app.mouseY);
-                this.arc(this.app.mouseX, this.app.mouseY, this.radius, -Math.PI / 2, this.app.timerMouse * 2 * Math.PI  -Math.PI / 2, false);
+                this.arc(this.app.mouseX, this.app.mouseY, this.radius, -(Math.PI / 2), (this.app.timerMouse * 2 * Math.PI) - (Math.PI / 2), false);
                 this.beginFill(this.season.color, 1);
-                this.drawCircle(this.app.mouseX, this.app.mouseY, 5);
+                this.drawCircle(this.app.mouseX, this.app.mouseY, this.radius / 3);
             } else {
                 document.body.style.cursor = 'pointer';
             }
-
+        } else {
+            document.body.style.cursor = 'wait';
         }
 
     }
 
 }
 
-export default Cursor;
+export default Cursor

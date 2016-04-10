@@ -1,5 +1,8 @@
 class Season {
 
+    /**
+     * constructor
+     */
     constructor() {
 
         let played = new Array();
@@ -23,6 +26,7 @@ class Season {
 
         // Parameters by season
         switch (this.season) {
+
             // Spring
             case 1:
                 this.name = 'spring';
@@ -30,6 +34,7 @@ class Season {
                 this.spinSpeed = 5;
                 this.factor = .7;
                 break;
+
             // Summer
             case 2:
                 this.name = 'summer';
@@ -37,6 +42,7 @@ class Season {
                 this.spinSpeed = 3;
                 this.factor = 1;
                 break;
+
             // Autumn
             case 3:
                 this.name = 'autumn';
@@ -44,6 +50,7 @@ class Season {
                 this.spinSpeed = 2;
                 this.factor = .8;
                 break;
+
             // Winter
             case 4:
                 this.name = 'winter';
@@ -51,13 +58,15 @@ class Season {
                 this.spinSpeed = 1;
                 this.factor = 1;
                 break;
+
             default:
                 break;
+
         }
 
         localStorage.setItem(this.name, 'played');
 
-        this.soundPath = `sounds/${ this.name }.mp3`;
+        this.soundPath = `./sounds/${ this.name }.mp3`;
 
         document.getElementById('link').style.color = `#${ this.color.substring(2) }`;
 
@@ -71,4 +80,4 @@ class Season {
 
 }
 
-export default Season;
+export default Season

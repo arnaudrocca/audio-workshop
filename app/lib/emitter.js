@@ -1,9 +1,14 @@
-import Particle from './particle';
-import AudioGraphics from './audioGraphics';
-import Cursor from './cursor';
+import Particle from './particle'
+import AudioGraphics from './audioGraphics'
+import Cursor from './cursor'
 
 class Emitter {
 
+	/**
+	 * constructor
+	 *
+	 * @param {obj} app - The app
+	 */
 	constructor(app) {
 
 		this.app = app;
@@ -19,10 +24,20 @@ class Emitter {
 	}
 
 	/**
+	 * onResize
+	 * - Triggered when the window is resized
+	 */
+	onResize() {
+
+		this.audioGraphics.onResize();
+
+	}
+
+	/**
 	 * throw
 	 * - Add new particles in the scene
 	 *
-	 * @param {number} nb
+	 * @param {number} nb - The number of particles to throw
 	 */
 	throw(nb) {
 
@@ -34,19 +49,26 @@ class Emitter {
 
 	}
 
+	/**
+	 * update
+	 * - Triggered on every TweenMax tick
+	 *
+	 * @param {number} dt
+	 */
 	update(dt) {
 
 		this.averageAmplitude = this.music.getAverageAmplitude();
 
-		this.scene.removeChild(this.audioGraphics);
-		this.scene.removeChild(this.cursor);
-
 		this.timer += dt;
+
 		// The number of particles throwed depends of the average amplitude
-		if (this.timer >= 500) {
-			this.throw(Math.floor(this.averageAmplitude));
+		if (this.timer >= 100) {
+			this.throw(Math.floor(this.averageAmplitude / 5));
 			this.timer = 0;
 		}
+
+		this.scene.removeChild(this.audioGraphics);
+		this.scene.removeChild(this.cursor);
 
 		// Update the particles
 		for (let i = 0; i < this.particles.length; i++) {
@@ -60,7 +82,7 @@ class Emitter {
 		}
 
 		// Update the audio graphics and the cursor
-		this.audioGraphics.update(dt);
+		this.audioGraphics.update();
 		this.cursor.update(dt);
 
 		this.scene.addChild(this.audioGraphics);
@@ -70,4 +92,4 @@ class Emitter {
 
 }
 
-export default Emitter;
+export default Emitter

@@ -1,5 +1,10 @@
 class Music {
 
+    /**
+     * constructor
+     *
+     * @param {obj} season - The season
+     */
     constructor(season) {
 
         this.season = season;
@@ -67,23 +72,24 @@ class Music {
      */
     getAverageAmplitude() {
 
-        this.amplitudes = 0;
+        let amplitudes = 0;
         let frequencyDataLength = this.frequencyData.length;
 
         for (let i = 0; i < frequencyDataLength; i++) {
-            this.amplitude = this.frequencyData[i];
-            this.amplitudes += this.amplitude;
+            let amplitude = this.frequencyData[i];
+            amplitudes += amplitude;
         }
 
-        this.averageAmplitude = ((this.amplitudes / frequencyDataLength) * this.season.factor);
+        let averageAmplitude = ((amplitudes / frequencyDataLength) * this.season.factor);
 
-        if (this.averageAmplitude == 0)
-            this.averageAmplitude = .01; // Never = 0
+        if (averageAmplitude == 0) {
+            averageAmplitude = .01; // Never = 0
+        }
 
-        return this.averageAmplitude;
+        return averageAmplitude;
 
     }
 
 }
 
-export default Music;
+export default Music
