@@ -48,7 +48,7 @@ class AudioGraphics extends Graphics {
         this.drawRect(0, 0, this.app.width, this.app.height);
 
         // Audio spectre
-        for (let i = 0; i < (this.app.width / 2) / (2 * this.spectreWidth); i++) {
+        for (let i = 0, l = (this.app.width / 2) / (2 * this.spectreWidth); i < l; i++) {
             this.amplitude = (this.frequencyData[i] * this.scaleFactor) / 2;
             this.beginFill(this.season.color, this.amplitude / 1000);
             this.drawRect(i * 2 * this.spectreWidth, (this.app.height - this.amplitude) / 2, this.spectreWidth, this.amplitude);

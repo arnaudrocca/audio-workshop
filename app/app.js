@@ -25,7 +25,7 @@ class App {
 		this.music = new Music(this.season);
 		this.emitter = new Emitter(this);
 
-		let root = document.body.querySelector('.app');
+		const root = document.body.querySelector('.app');
 		root.appendChild(this.scene.renderer.view);
 
 		this.music.loadSound();
@@ -51,15 +51,15 @@ class App {
 	 * onMouseDown
 	 * - Triggered when the user clicks
 	 *
-	 * @param {obj} event
+	 * @param {obj} e - event
 	 */
-	onMouseDown(event) {
+	onMouseDown(e) {
 
 		this.mouseDown = true;
 
-		this.event = event || window.event;
-		this.mouseX = this.event.clientX;
-		this.mouseY = this.event.clientY;
+		const event = e || window.e;
+		this.mouseX = event.clientX;
+		this.mouseY = event.clientY;
 
 		window.addEventListener('mouseup', this.onMouseUp.bind(this));
 		window.addEventListener('mousemove', this.onMouseMove.bind(this));
@@ -84,13 +84,13 @@ class App {
 	 * onMouseMove
 	 * - Triggered when the user moves the mouse
 	 *
-	 * @param {obj} event
+	 * @param {obj} e - event
 	 */
-	onMouseMove(event) {
+	onMouseMove(e) {
 
-		this.event = event || window.event;
-		this.mouseX = this.event.clientX;
-		this.mouseY = this.event.clientY;
+		const event = e || window.e;
+		this.mouseX = event.clientX;
+		this.mouseY = event.clientY;
 
 	}
 

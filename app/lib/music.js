@@ -10,7 +10,7 @@ class Music {
         this.season = season;
         this.soundPath = this.season.soundPath;
 
-        let constructor = window.AudioContext || window.webkitAudioContext;
+        const constructor = window.AudioContext || window.webkitAudioContext;
         this.audioCtx = new constructor();
         this.analyser = this.audioCtx.createAnalyser();
         this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
@@ -22,7 +22,7 @@ class Music {
      */
     loadSound() {
 
-        var request = new XMLHttpRequest();
+        const request = new XMLHttpRequest();
         request.open('GET', this.soundPath, true);
         request.responseType = 'arraybuffer';
 
@@ -73,14 +73,12 @@ class Music {
     getAverageAmplitude() {
 
         let amplitudes = 0;
-        let frequencyDataLength = this.frequencyData.length;
 
-        for (let i = 0; i < frequencyDataLength; i++) {
-            let amplitude = this.frequencyData[i];
+        for (let amplitude of this.frequencyData) {
             amplitudes += amplitude;
         }
 
-        let averageAmplitude = ((amplitudes / frequencyDataLength) * this.season.factor);
+        let averageAmplitude = ((amplitudes / this.frequencyData.length) * this.season.factor);
 
         if (averageAmplitude == 0) {
             averageAmplitude = .01; // Never = 0

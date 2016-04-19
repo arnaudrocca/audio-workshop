@@ -42,9 +42,9 @@ class Emitter {
 	throw(nb) {
 
 		for (let i = 0; i < nb; i++) {
-			let p = new Particle(this.app);
-			this.particles.push(p);
-			this.scene.addChild(p);
+			const particle = new Particle(this.app);
+			this.particles.push(particle);
+			this.scene.addChild(particle);
 		}
 
 	}
@@ -71,15 +71,15 @@ class Emitter {
 		this.scene.removeChild(this.cursor);
 
 		// Update the particles
-		for (let i = 0; i < this.particles.length; i++) {
-			let p = this.particles[i];
-			p.update(dt);
+		const self = this;
+		this.particles.forEach(function (particle, index) {
+			particle.update(dt);
 			// Kill the particles
-			if (!p.isAlive) {
-				this.particles.splice(i, 1);
-				this.scene.removeChild(p);
+			if (!particle.isAlive) {
+				self.particles.splice(index, 1);
+				self.scene.removeChild(particle);
 			}
-		}
+		});
 
 		// Update the audio graphics and the cursor
 		this.audioGraphics.update();
