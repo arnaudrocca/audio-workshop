@@ -8,10 +8,10 @@ Demo available [here](http://lab.arnaudrocca.fr/audio-workshop/).
 
 #### Technologies :
 
-* [Babel ES6](https://github.com/babel/babelify)
+* [ES6 : Babel](https://github.com/babel/babel)
 * [Pixi.js](https://github.com/GoodBoyDigital/pixi.js)
 * [Web Audio API](https://webaudio.github.io/web-audio-api/)
-* [GSAP (Tweenmax)](http://www.greensock.com/gsap-js)
+* [GSAP (Tweenmax)](http://greensock.com/tweenmax)
 
 #### Setup :
 
