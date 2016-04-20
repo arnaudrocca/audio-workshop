@@ -70,11 +70,11 @@ class Season {
 
         document.getElementById('link').style.color = `#${ this.color.substring(2) }`;
 
-        this.favicon = document.createElement('link');
-        this.favicon.id = 'dynamic-favicon';
-        this.favicon.rel = 'shortcut icon';
-        this.favicon.href = `./images/favicon-${ this.name }.png`;
-        document.head.appendChild(this.favicon);
+        let favicon = document.createElement('link');
+        favicon.id = 'dynamic-favicon';
+        favicon.rel = 'shortcut icon';
+        favicon.href = `./images/favicon-${ this.name }.png`;
+        document.head.appendChild(favicon);
 
     }
 

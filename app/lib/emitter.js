@@ -57,13 +57,13 @@ class Emitter {
 	 */
 	update(dt) {
 
-		this.averageAmplitude = this.music.getAverageAmplitude();
+		let averageAmplitude = this.music.getAverageAmplitude();
 
 		this.timer += dt;
 
 		// The number of particles throwed depends of the average amplitude
 		if (this.timer >= 100) {
-			this.throw(Math.floor(this.averageAmplitude / 5));
+			this.throw(Math.floor(averageAmplitude / 5));
 			this.timer = 0;
 		}
 
@@ -72,7 +72,7 @@ class Emitter {
 
 		// Update the particles
 		const self = this;
-		this.particles.forEach(function (particle, index) {
+		this.particles.forEach(function(particle, index) {
 			particle.update(dt);
 			// Kill the particles
 			if (!particle.isAlive) {

@@ -22,14 +22,14 @@ class Music {
      */
     loadSound() {
 
-        const request = new XMLHttpRequest();
+        let request = new XMLHttpRequest();
         request.open('GET', this.soundPath, true);
         request.responseType = 'arraybuffer';
 
         // Decode asynchronously
-        request.onload = function () {
+        request.onload = function() {
 
-            this.audioCtx.decodeAudioData(request.response, function (buffer) {
+            this.audioCtx.decodeAudioData(request.response, function(buffer) {
 
                 // Success callback
                 this.audioBuffer = buffer;
@@ -45,7 +45,7 @@ class Music {
                 // Play sound
                 this.audioSource.start(this.audioCtx.currentTime);
 
-            }.bind(this), function () {
+            }.bind(this), function() {
 
                 // Error callback
 
