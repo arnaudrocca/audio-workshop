@@ -5,9 +5,8 @@ import Cursor from './cursor'
 class Emitter {
 
 	/**
-	 * constructor
-	 *
-	 * @param {obj} app - The app
+	 * @constructor
+	 * @param {object} app - The app
 	 */
 	constructor(app) {
 
@@ -24,8 +23,9 @@ class Emitter {
 	}
 
 	/**
-	 * onResize
-	 * - Triggered when the window is resized
+	 * @method
+	 * @name onResize
+	 * @description Triggered when the window is resized
 	 */
 	onResize() {
 
@@ -34,15 +34,16 @@ class Emitter {
 	}
 
 	/**
-	 * throw
-	 * - Add new particles in the scene
-	 *
-	 * @param {number} nb - The number of particles to throw
-	 */
-	throw(nb) {
+     * @method
+     * @name throw
+     * @description Add new particles in the scene
+     * @param {number} number - Number of thrown particles
+     */
+	throw(number) {
 
-		for (let i = 0; i < nb; i++) {
+		for (let i = 0; i < number; i++) {
 			const particle = new Particle(this.app);
+
 			this.particles.push(particle);
 			this.scene.addChild(particle);
 		}
@@ -50,9 +51,9 @@ class Emitter {
 	}
 
 	/**
-	 * update
-	 * - Triggered on every TweenMax tick
-	 *
+	 * @method
+	 * @name update
+	 * @description Triggered on every TweenMax tick
 	 * @param {number} dt
 	 */
 	update(dt) {
@@ -71,15 +72,15 @@ class Emitter {
 		this.scene.removeChild(this.cursor);
 
 		// Update the particles
-		const self = this;
-		this.particles.forEach(function(particle, index) {
+		for (let i in this.particles) {
+			const particle = this.particles[i];
 			particle.update(dt);
 			// Kill the particles
 			if (!particle.isAlive) {
-				self.particles.splice(index, 1);
-				self.scene.removeChild(particle);
+				this.particles.splice(i, 1);
+				this.scene.removeChild(particle);
 			}
-		});
+		}
 
 		// Update the audio graphics and the cursor
 		this.audioGraphics.update();

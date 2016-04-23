@@ -1,10 +1,9 @@
 class Music {
 
     /**
-     * constructor
-     *
-     * @param {obj} season - The season
-     */
+	 * @constructor
+	 * @param {object} season - The season
+	 */
     constructor(season) {
 
         this.season = season;
@@ -18,8 +17,10 @@ class Music {
     }
 
     /**
-     * loadSound
-     */
+	 * @method
+	 * @name loadSound
+	 * @description Load the sound
+	 */
     loadSound() {
 
         let request = new XMLHttpRequest();
@@ -58,8 +59,10 @@ class Music {
     }
 
     /**
-     * getFrequencyData
-     */
+	 * @method
+	 * @name getFrequencyData
+	 * @return {array} frequencyData
+	 */
     getFrequencyData() {
 
         this.analyser.getByteFrequencyData(this.frequencyData);
@@ -68,8 +71,10 @@ class Music {
     }
 
     /**
-     * getAverageAmplitude
-     */
+	 * @method
+	 * @name getAverageAmplitude
+	 * @return {number} averageAmplitude
+	 */
     getAverageAmplitude() {
 
         let amplitudes = 0;

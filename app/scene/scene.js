@@ -1,10 +1,9 @@
 import { WebGLRenderer, Container } from 'pixi.js'
-var pixi = require('pixi.js')
 
 class Scene {
 
 	/**
-	 * constructor
+	 * @constructor
 	 */
 	constructor() {
 
@@ -17,10 +16,10 @@ class Scene {
 	}
 
 	/**
-	 * addChild
-	 * - Add a child to the stage
-	 *
-	 * @param {obj} child - A PIXI object
+	 * @method
+	 * @name addChild
+	 * @description Add a child to the stage
+	 * @param {object} child - A PIXI object
 	 */
 	addChild(child) {
 
@@ -29,10 +28,10 @@ class Scene {
 	}
 
 	/**
-	 * removeChild
-	 * - Remove a child from the stage
-	 *
-	 * @param {obj} child - A PIXI object
+	 * @method
+	 * @name removeChild
+	 * @description Remove a child from the stage
+	 * @param {object} child - A PIXI object
 	 */
 	removeChild(child) {
 
@@ -41,8 +40,9 @@ class Scene {
 	}
 
 	/**
-	 * render
-	 * - Renders/Draw the scene
+	 * @method
+	 * @name render
+	 * @description Renders/Draw the scene
 	 */
 	render() {
 
@@ -51,9 +51,9 @@ class Scene {
 	}
 
 	/**
-	 * resize
-	 * - Resize the scene according to screen size
-	 *
+	 * @method
+	 * @name resize
+	 * @description Resize the scene according to screen size
 	 * @param {number} newWidth
 	 * @param {number} newHeight
 	 */

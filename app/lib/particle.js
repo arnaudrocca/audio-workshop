@@ -3,9 +3,8 @@ import { Graphics } from 'pixi.js'
 class Particle extends Graphics {
 
 	/**
-	 * constructor
-	 *
-	 * @param {obj} app - The app
+	 * @constructor
+	 * @param {object} app - The app
 	 */
 	constructor(app) {
 
@@ -37,9 +36,9 @@ class Particle extends Graphics {
 	}
 
 	/**
-	 * update
-	 * - Triggered on every TweenMax tick
-	 *
+	 * @method
+	 * @name update
+	 * @description Triggered on every TweenMax tick
 	 * @param {number} dt
 	 */
 	update(dt) {

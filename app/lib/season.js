@@ -1,68 +1,20 @@
+import seasonData from './data/seasonData.json'
+
 class Season {
 
     /**
-     * constructor
-     */
+	 * @constructor
+	 */
     constructor() {
 
-        let played = new Array();
+        this.season = this.getSeason();
 
-        played[1] = localStorage.getItem('spring');
-        played[2] = localStorage.getItem('summer');
-        played[3] = localStorage.getItem('autumn');
-        played[4] = localStorage.getItem('winter');
-
-        this.season = Math.ceil(Math.random() * 4);
-
-        // Don't play the same music twice in the same loop
-        if (!(played[1] === 'played' && played[2] === 'played' && played[3] === 'played' && played[4] === 'played')) {
-        	while (played[this.season] === 'played') {
-        		this.season = Math.ceil(Math.random() * 4);
-        	}
-        } else {
-        	// Restart a new loop
-        	localStorage.clear();
-        }
-
-        // Parameters by season
-        switch (this.season) {
-
-            // Spring
-            case 1:
-                this.name = 'spring';
-                this.color = '0x00FF00';
-                this.spinSpeed = 5;
-                this.factor = .7;
-                break;
-
-            // Summer
-            case 2:
-                this.name = 'summer';
-                this.color = '0xFFFF00';
-                this.spinSpeed = 3;
-                this.factor = 1;
-                break;
-
-            // Autumn
-            case 3:
-                this.name = 'autumn';
-                this.color = '0xFF7700';
-                this.spinSpeed = 2;
-                this.factor = .8;
-                break;
-
-            // Winter
-            case 4:
-                this.name = 'winter';
-                this.color = '0x0000FF';
-                this.spinSpeed = 1;
-                this.factor = 1;
-                break;
-
-            default:
-                break;
-
-        }
+        // Params by season
+        const currentSeason = this.season;
+        let seasonParams = seasonData.find((season) => {
+            return season.id == currentSeason;
+        });
+        Object.assign(this, seasonParams);
 
         localStorage.setItem(this.name, 'played');
 
@@ -75,6 +27,36 @@ class Season {
         favicon.rel = 'shortcut icon';
         favicon.href = `./images/favicon-${ this.name }.png`;
         document.head.appendChild(favicon);
+
+    }
+
+    /**
+     * @method
+     * @name getSeason
+     * @return {number} season - The id of the season
+     */
+    getSeason() {
+
+        let played = new Array();
+
+        played[0] = localStorage.getItem('spring');
+        played[1] = localStorage.getItem('summer');
+        played[2] = localStorage.getItem('autumn');
+        played[3] = localStorage.getItem('winter');
+
+        let season = Math.floor(Math.random() * 4);
+
+        // Don't play the same music twice in the same loop
+        if (!(played[0] === 'played' && played[1] === 'played' && played[2] === 'played' && played[3] === 'played')) {
+            while (played[season] === 'played') {
+                season = Math.floor(Math.random() * 4);
+            }
+        } else {
+            // Restart a new loop
+            localStorage.clear();
+        }
+
+        return season;
 
     }
 

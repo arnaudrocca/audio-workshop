@@ -3,10 +3,9 @@ import { Graphics } from 'pixi.js'
 class AudioGraphics extends Graphics {
 
     /**
-     * constructor
-     *
-     * @param {obj} app - The app
-     */
+	 * @constructor
+	 * @param {object} app - The app
+	 */
     constructor(app) {
 
 		super();
@@ -23,9 +22,10 @@ class AudioGraphics extends Graphics {
     }
 
     /**
-     * onResize
-     * - Triggered when the window is resized
-     */
+	 * @method
+	 * @name onResize
+	 * @description Triggered when the window is resized
+	 */
     onResize() {
 
         this.scaleFactor = Math.min(this.app.width, this.app.height) / 300;
@@ -33,9 +33,11 @@ class AudioGraphics extends Graphics {
     }
 
     /**
-     * update
-     * - Triggered on every TweenMax tick
-     */
+	 * @method
+	 * @name update
+	 * @description Triggered on every TweenMax tick
+	 * @param {number} dt
+	 */
     update() {
 
         this.clear();

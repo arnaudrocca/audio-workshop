@@ -6,7 +6,7 @@ import Emitter from './lib/emitter'
 class App {
 
 	/**
-	 * constructor
+	 * @constructor
 	 */
 	constructor() {
 
@@ -35,8 +35,9 @@ class App {
 	}
 
 	/**
-	 * onResize
-	 * - Triggered when the window is resized
+	 * @method
+	 * @name onResize
+	 * @description Triggered when the window is resized
 	 */
 	onResize() {
 
@@ -48,10 +49,10 @@ class App {
 	}
 
 	/**
-	 * onMouseDown
-	 * - Triggered when the user clicks
-	 *
-	 * @param {obj} e - event
+	 * @method
+	 * @name onMouseDown
+	 * @description Triggered when the user clicks
+	 * @param {object} e - event
 	 */
 	onMouseDown(e) {
 
@@ -67,8 +68,10 @@ class App {
 	}
 
 	/**
-	 * onMouseUp
-	 * - Triggered when the user releases the click
+	 * @method
+	 * @name onMouseUp
+	 * @description Triggered when the user releases the click
+	 * @param {object} e - event
 	 */
 	onMouseUp() {
 
@@ -81,10 +84,10 @@ class App {
 	}
 
 	/**
-	 * onMouseMove
-	 * - Triggered when the user moves the mouse
-	 *
-	 * @param {obj} e - event
+	 * @method
+	 * @name onMouseMove
+	 * @description Triggered when the user moves the mouse
+	 * @param {object} e - event
 	 */
 	onMouseMove(e) {
 
@@ -95,7 +98,8 @@ class App {
 	}
 
 	/**
-	 * addListeners
+	 * @method
+	 * @name addListeners
 	 */
 	addListeners() {
 
@@ -106,8 +110,10 @@ class App {
     }
 
 	/**
-	 * update
-	 * - Triggered on every TweenMax tick
+	 * @method
+	 * @name update
+	 * @description Triggered on every TweenMax tick
+	 * @param {number} dt
 	 */
 	update() {
 

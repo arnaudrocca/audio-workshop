@@ -3,10 +3,9 @@ import { Graphics } from 'pixi.js'
 class Cursor extends Graphics {
 
     /**
-     * constructor
-     *
-     * @param {obj} app - The app
-     */
+	 * @constructor
+	 * @param {object} app - The app
+	 */
     constructor(app) {
 
 		super();
@@ -20,11 +19,11 @@ class Cursor extends Graphics {
     }
 
     /**
-     * update
-     * - Triggered on every TweenMax tick
-     *
-     * @param {number} dt
-     */
+	 * @method
+	 * @name update
+	 * @description Triggered on every TweenMax tick
+	 * @param {number} dt
+	 */
     update(dt) {
 
         this.clear();

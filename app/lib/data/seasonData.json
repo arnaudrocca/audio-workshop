@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "name": "spring",
+        "color": "0x00FF00",
+        "spinSpeed": 5,
+        "factor": 0.7
+
+    },
+    {
+        "id": 1,
+        "name": "summer",
+        "color": "0xFFFF00",
+        "spinSpeed": 3,
+        "factor": 1
+    },
+    {
+        "id": 2,
+        "name": "autumn",
+        "color": "0xFF7700",
+        "spinSpeed": 2,
+        "factor": 0.8
+
+    },
+    {
+        "id": 3,
+        "name": "winter",
+        "color": "0x0000FF",
+        "spinSpeed": 1,
+        "factor": 1
+    }
+]
