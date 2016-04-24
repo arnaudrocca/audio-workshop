@@ -18,14 +18,14 @@ class Season {
 
         localStorage.setItem(this.name, 'played');
 
-        this.soundPath = `./sounds/${ this.name }.mp3`;
+        this.soundPath = `//lab.arnaudrocca.fr/audio-workshop/assets/audio/${ this.name }.mp3`;
 
         document.getElementById('link').style.color = `#${ this.color.substring(2) }`;
 
         let favicon = document.createElement('link');
         favicon.id = 'dynamic-favicon';
         favicon.rel = 'shortcut icon';
-        favicon.href = `./images/favicon-${ this.name }.png`;
+        favicon.href = `./assets/images/favicon-${ this.name }.png`;
         document.head.appendChild(favicon);
 
     }
