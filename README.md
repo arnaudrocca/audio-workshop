@@ -6,7 +6,7 @@ Made during the creative coding workshop at Gobelins, led by [William Mapan](htt
 
 Demo available [here](http://lab.arnaudrocca.fr/audio-workshop).
 
-![Preview](http://lab.arnaudrocca.fr/audio-workshop/preview.gif)
+![Preview](http://lab.arnaudrocca.fr/audio-workshop/assets/images/preview.gif)
 
 #### Technologies :
 
