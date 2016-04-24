@@ -15,19 +15,19 @@ Demo available [here](http://lab.arnaudrocca.fr/audio-workshop).
 
 #### Setup :
 
-After cloning install all node dependencies and libraries :  
+After cloning install all node dependencies and libraries :
 ```shell
 npm install
 ```
 
-Launch the project :  
+Launch the project :
 ```shell
 npm start
 ```
 
 The project will be launched at http://localhost:9000/
 
-Build for production :  
+Build for production :
 ```shell
 npm run build
 ```

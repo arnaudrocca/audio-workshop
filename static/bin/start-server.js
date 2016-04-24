@@ -6,7 +6,7 @@ var path = require('path');
 var browserSync = require('browser-sync');
 var url = require('url');
 
-var folder = path.resolve( __dirname, "../static/" );
+var folder = path.resolve(__dirname, '../static/');
 
 var routes = new Array();
 
@@ -24,7 +24,7 @@ browserSync({
         host: 'localhost',
         middleware: function(req, res, next) {
             if (routes.indexOf(req.url) !== -1) {
-                req.url = "/index.html";
+                req.url = '/index.html';
             }
             return next();
         }

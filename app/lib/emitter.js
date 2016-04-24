@@ -12,7 +12,7 @@ class Emitter {
 
 		this.app = app;
 		this.scene = this.app.scene;
-		this.music = this.app.music;
+		this.audio = this.app.audio;
 
 		this.particles = new Array();
 		this.audioGraphics = new AudioGraphics(this.app);
@@ -54,11 +54,11 @@ class Emitter {
 	 * @method
 	 * @name update
 	 * @description Triggered on every TweenMax tick
-	 * @param {number} dt
+	 * @param {number} dt - DELTA_TIME
 	 */
 	update(dt) {
 
-		let averageAmplitude = this.music.getAverageAmplitude();
+		let averageAmplitude = this.audio.getAverageAmplitude();
 
 		this.timer += dt;
 
@@ -84,7 +84,7 @@ class Emitter {
 
 		// Update the audio graphics and the cursor
 		this.audioGraphics.update();
-		this.cursor.update(dt);
+		this.cursor.update();
 
 		this.scene.addChild(this.audioGraphics);
 		this.scene.addChild(this.cursor);

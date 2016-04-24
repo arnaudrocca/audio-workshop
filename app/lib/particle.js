@@ -12,7 +12,7 @@ class Particle extends Graphics {
 
 		this.app = app;
 		this.season = this.app.season;
-		this.music = this.app.music;
+		this.audio = this.app.audio;
 
 		this.x = window.innerWidth / 2;
 		this.y = window.innerHeight / 2;
@@ -39,13 +39,13 @@ class Particle extends Graphics {
 	 * @method
 	 * @name update
 	 * @description Triggered on every TweenMax tick
-	 * @param {number} dt
+	 * @param {number} dt - DELTA_TIME
 	 */
 	update(dt) {
 
 		this.clear();
 
-		this.averageAmplitude = this.music.getAverageAmplitude();
+		this.averageAmplitude = this.audio.getAverageAmplitude();
 
 		if (this.type) {
 			this.angle += .01;

@@ -12,7 +12,7 @@ class AudioGraphics extends Graphics {
 
         this.app = app;
 		this.season = this.app.season;
-        this.music = this.app.music;
+        this.audio = this.app.audio;
 
         this.spectreWidth = 3;
         this.scaleFactor = Math.min(this.app.width, this.app.height) / 300;
@@ -36,14 +36,13 @@ class AudioGraphics extends Graphics {
 	 * @method
 	 * @name update
 	 * @description Triggered on every TweenMax tick
-	 * @param {number} dt
 	 */
     update() {
 
         this.clear();
 
-        let frequencyData = this.music.getFrequencyData();
-        let averageAmplitude = this.music.getAverageAmplitude();
+        let frequencyData = this.audio.getFrequencyData();
+        let averageAmplitude = this.audio.getAverageAmplitude();
 
         // Background
         this.beginFill(this.season.color, averageAmplitude / 300);

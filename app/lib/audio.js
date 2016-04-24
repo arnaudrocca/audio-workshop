@@ -1,4 +1,4 @@
-class Music {
+class Audio {
 
     /**
 	 * @constructor
@@ -95,4 +95,4 @@ class Music {
 
 }
 
-export default Music
+export default Audio

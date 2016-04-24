@@ -12,7 +12,6 @@ class Cursor extends Graphics {
 
         this.app = app;
         this.season = this.app.season;
-		this.music = this.app.music;
 
         this.radius = 15;
 
@@ -22,9 +21,8 @@ class Cursor extends Graphics {
 	 * @method
 	 * @name update
 	 * @description Triggered on every TweenMax tick
-	 * @param {number} dt
 	 */
-    update(dt) {
+    update() {
 
         this.clear();
 

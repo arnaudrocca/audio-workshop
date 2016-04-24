@@ -1,6 +1,6 @@
 import Scene from './scene/scene'
 import Season from './lib/season'
-import Music from './lib/music'
+import Audio from './lib/audio'
 import Emitter from './lib/emitter'
 
 class App {
@@ -22,13 +22,13 @@ class App {
 
 		this.scene = new Scene();
 		this.season = new Season();
-		this.music = new Music(this.season);
+		this.audio = new Audio(this.season);
 		this.emitter = new Emitter(this);
 
 		const root = document.body.querySelector('.app');
 		root.appendChild(this.scene.renderer.view);
 
-		this.music.loadSound();
+		this.audio.loadSound();
 
 		this.addListeners();
 
@@ -68,11 +68,11 @@ class App {
 	}
 
 	/**
-	 * @method
-	 * @name onMouseUp
-	 * @description Triggered when the user releases the click
-	 * @param {object} e - event
-	 */
+	* @method
+	* @name onMouseUp
+	* @description Triggered when the user releases the click
+	* @param {object} e - event
+	*/
 	onMouseUp() {
 
 		this.mouseDown = false;
@@ -84,11 +84,11 @@ class App {
 	}
 
 	/**
-	 * @method
-	 * @name onMouseMove
-	 * @description Triggered when the user moves the mouse
-	 * @param {object} e - event
-	 */
+	* @method
+	* @name onMouseMove
+	* @description Triggered when the user moves the mouse
+	* @param {object} e - event
+	*/
 	onMouseMove(e) {
 
 		const event = e || window.e;
@@ -98,9 +98,9 @@ class App {
 	}
 
 	/**
-	 * @method
-	 * @name addListeners
-	 */
+	* @method
+	* @name addListeners
+	*/
 	addListeners() {
 
 		TweenMax.ticker.addEventListener('tick', this.update.bind(this));
@@ -110,17 +110,16 @@ class App {
     }
 
 	/**
-	 * @method
-	 * @name update
-	 * @description Triggered on every TweenMax tick
-	 * @param {number} dt
-	 */
+	* @method
+	* @name update
+	* @description Triggered on every TweenMax tick
+	*/
 	update() {
 
 		this.DELTA_TIME = Date.now() - this.LAST_TIME;
 		this.LAST_TIME = Date.now();
 
-		if (!this.start && this.music.getAverageAmplitude() > .01) {
+		if (!this.start && this.audio.getAverageAmplitude() > .01) {
 			this.start = true;
 		}
 
@@ -128,7 +127,7 @@ class App {
 			this.timer += this.DELTA_TIME / 1000;
 
 			// Reload the page at the end of the music
-			if (this.timer > this.music.audioBuffer.duration) {
+			if (this.timer > this.audio.audioBuffer.duration) {
 				location.reload();
 			}
 
