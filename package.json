@@ -15,6 +15,11 @@
     "mail": "arnaud.rocca@gmail.com"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArnaudRocca/audio-workshop.git"
+  },
+  "homepage": "https://github.com/ArnaudRocca/audio-workshop",
   "dependencies": {
     "pixi.js": "^3.0.8"
   },
