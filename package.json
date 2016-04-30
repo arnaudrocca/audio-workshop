@@ -37,9 +37,6 @@
     ]
   },
   "babel": {
-    "ignore": [
-      "./app/vendor/*.js"
-    ],
     "presets": [
       "es2015"
     ]
