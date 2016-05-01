@@ -43,7 +43,7 @@ class App {
 
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
-		this.emitter.onResize();
+		this.emitter.audioGraphics.resize();
 		this.scene.resize(this.width, this.height);
 
 	}
@@ -56,11 +56,12 @@ class App {
 	 */
 	onMouseDown(e) {
 
-		this.mouseDown = true;
-
 		const event = e || window.e;
+
 		this.mouseX = event.clientX;
 		this.mouseY = event.clientY;
+
+		this.mouseDown = true;
 
 		window.addEventListener('mouseup', this.onMouseUp.bind(this));
 		window.addEventListener('mousemove', this.onMouseMove.bind(this));
@@ -92,6 +93,7 @@ class App {
 	onMouseMove(e) {
 
 		const event = e || window.e;
+
 		this.mouseX = event.clientX;
 		this.mouseY = event.clientY;
 
@@ -119,7 +121,7 @@ class App {
 		this.DELTA_TIME = Date.now() - this.LAST_TIME;
 		this.LAST_TIME = Date.now();
 
-		if (!this.start && this.audio.getAverageAmplitude() > .01) {
+		if (!this.start && this.audio.getAverage() > .01) {
 			this.start = true;
 		}
 

@@ -9,7 +9,7 @@ class Scene {
 
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
-		this.renderer = new WebGLRenderer(this.width, this.height, { antialias: true });
+		this.renderer = new WebGLRenderer(this.width, this.height, {antialias: true});
 
 		this.stage = new Container();
 
@@ -21,7 +21,7 @@ class Scene {
 	 * @description Add a child to the stage
 	 * @param {object} child - A PIXI object
 	 */
-	addChild(child) {
+	add(child) {
 
 		this.stage.addChild(child);
 
@@ -29,11 +29,11 @@ class Scene {
 
 	/**
 	 * @method
-	 * @name removeChild
+	 * @name remove
 	 * @description Remove a child from the stage
 	 * @param {object} child - A PIXI object
 	 */
-	removeChild(child) {
+	remove(child) {
 
 		this.stage.removeChild(child);
 

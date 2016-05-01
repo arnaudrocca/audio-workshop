@@ -23,10 +23,10 @@ class AudioGraphics extends Graphics {
 
     /**
 	 * @method
-	 * @name onResize
+	 * @name resize
 	 * @description Triggered when the window is resized
 	 */
-    onResize() {
+    resize() {
 
         this.scaleFactor = Math.min(this.app.width, this.app.height) / 300;
 
@@ -42,10 +42,10 @@ class AudioGraphics extends Graphics {
         this.clear();
 
         let frequencyData = this.audio.getFrequencyData();
-        let averageAmplitude = this.audio.getAverageAmplitude();
+        let average = this.audio.getAverage();
 
         // Background
-        this.beginFill(this.season.color, averageAmplitude / 300);
+        this.beginFill(this.season.color, average / 300);
         this.drawRect(0, 0, this.app.width, this.app.height);
 
         // Audio spectre
@@ -59,10 +59,10 @@ class AudioGraphics extends Graphics {
         // Circles
         for (let i = 1; i <= 10; i++) {
             this.beginFill(this.season.color, 1 / i);
-            this.drawCircle(this.app.width / 2, this.app.height / 2, (averageAmplitude * this.scaleFactor) + i);
+            this.drawCircle(this.app.width / 2, this.app.height / 2, (average * this.scaleFactor) + i);
         }
         this.beginFill(0x000000);
-        this.drawCircle(this.app.width / 2, this.app.height / 2, averageAmplitude * this.scaleFactor);
+        this.drawCircle(this.app.width / 2, this.app.height / 2, average * this.scaleFactor);
 
     }
 

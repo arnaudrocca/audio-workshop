@@ -45,8 +45,6 @@ class Particle extends Graphics {
 
 		this.clear();
 
-		this.averageAmplitude = this.audio.getAverageAmplitude();
-
 		if (this.type) {
 			this.angle += .01;
 			this.rotation += 0.05 * this.season.spinSpeed;

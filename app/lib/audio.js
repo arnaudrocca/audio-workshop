@@ -72,10 +72,10 @@ class Audio {
 
     /**
 	 * @method
-	 * @name getAverageAmplitude
-	 * @return {number} averageAmplitude
+	 * @name getAverage
+	 * @return {number} average
 	 */
-    getAverageAmplitude() {
+    getAverage() {
 
         let amplitudes = 0;
 
@@ -83,13 +83,13 @@ class Audio {
             amplitudes += amplitude;
         }
 
-        let averageAmplitude = ((amplitudes / this.frequencyData.length) * this.season.factor);
+        let average = (amplitudes / this.frequencyData.length) * this.season.factor;
 
-        if (averageAmplitude == 0) {
-            averageAmplitude = .01; // Never = 0
+        if (average <= 0) {
+            average = .01; // Never = 0
         }
 
-        return averageAmplitude;
+        return average;
 
     }
 

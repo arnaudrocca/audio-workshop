@@ -23,17 +23,6 @@ class Emitter {
 	}
 
 	/**
-	 * @method
-	 * @name onResize
-	 * @description Triggered when the window is resized
-	 */
-	onResize() {
-
-		this.audioGraphics.onResize();
-
-	}
-
-	/**
      * @method
      * @name throw
      * @description Add new particles in the scene
@@ -45,7 +34,7 @@ class Emitter {
 			const particle = new Particle(this.app);
 
 			this.particles.push(particle);
-			this.scene.addChild(particle);
+			this.scene.add(particle);
 		}
 
 	}
@@ -58,18 +47,18 @@ class Emitter {
 	 */
 	update(dt) {
 
-		let averageAmplitude = this.audio.getAverageAmplitude();
+		let average = this.audio.getAverage();
 
 		this.timer += dt;
 
 		// The number of particles throwed depends of the average amplitude
 		if (this.timer >= 100) {
-			this.throw(Math.floor(averageAmplitude / 5));
+			this.throw(Math.floor(average / 5));
 			this.timer = 0;
 		}
 
-		this.scene.removeChild(this.audioGraphics);
-		this.scene.removeChild(this.cursor);
+		this.scene.remove(this.audioGraphics);
+		this.scene.remove(this.cursor);
 
 		// Update the particles
 		for (let i in this.particles) {
@@ -78,7 +67,7 @@ class Emitter {
 			// Kill the particles
 			if (!particle.isAlive) {
 				this.particles.splice(i, 1);
-				this.scene.removeChild(particle);
+				this.scene.remove(particle);
 			}
 		}
 
@@ -86,8 +75,8 @@ class Emitter {
 		this.audioGraphics.update();
 		this.cursor.update();
 
-		this.scene.addChild(this.audioGraphics);
-		this.scene.addChild(this.cursor);
+		this.scene.add(this.audioGraphics);
+		this.scene.add(this.cursor);
 
 	}
 
