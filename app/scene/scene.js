@@ -1,4 +1,4 @@
-import { WebGLRenderer, Container } from 'pixi.js'
+import { CanvasRenderer, Container } from 'pixi.js'
 
 class Scene {
 
@@ -9,7 +9,8 @@ class Scene {
 
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
-		this.renderer = new WebGLRenderer(this.width, this.height, {antialias: true});
+		
+		this.renderer = new CanvasRenderer(this.width, this.height, {antialias: true});
 
 		this.stage = new Container();
 
