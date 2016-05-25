@@ -9,8 +9,8 @@ class Audio {
         this.season = season;
         this.soundPath = this.season.soundPath;
 
-        const constructor = window.AudioContext || window.webkitAudioContext;
-        this.audioCtx = new constructor();
+        const Constructor = window.AudioContext || window.webkitAudioContext;
+        this.audioCtx = new Constructor();
         this.analyser = this.audioCtx.createAnalyser();
         this.frequencyData = new Uint8Array(this.analyser.frequencyBinCount);
 
@@ -23,19 +23,19 @@ class Audio {
 	 */
     loadSound() {
 
-        let request = new XMLHttpRequest();
+        const request = new XMLHttpRequest();
         request.open('GET', this.soundPath, true);
         request.responseType = 'arraybuffer';
 
         // Decode asynchronously
-        request.onload = function() {
+        request.onload = () => {
 
-            this.audioCtx.decodeAudioData(request.response, function(buffer) {
+            this.audioCtx.decodeAudioData(request.response, (buffer) => {
 
-                // Success callback
-                this.audioBuffer = buffer;
+                // SUCCESS CALLBACK
 
                 // Create sound from buffer
+                this.audioBuffer = buffer;
                 this.audioSource = this.audioCtx.createBufferSource();
                 this.audioSource.buffer = this.audioBuffer;
 
@@ -43,16 +43,20 @@ class Audio {
                 this.audioSource.connect(this.analyser);
                 this.analyser.connect(this.audioCtx.destination);
 
+                // Audio source params
+                this.audioSource.crossOrigin = 'anonymous';
+
                 // Play sound
                 this.audioSource.start(this.audioCtx.currentTime);
 
-            }.bind(this), function() {
+            }, (error) => {
 
-                // Error callback
+                // ERROR CALLBACK
+                console.info(`The following error occured : \n${error}`);
 
             });
 
-        }.bind(this);
+        }
 
         request.send();
 
