@@ -20,7 +20,7 @@ class App {
 		this.mouseDown = false;
 		this.start = false;
 
-		this.scene = new Scene();
+		this.scene = new Scene(this.width, this.height);
 		this.season = new Season();
 		this.audio = new Audio(this.season);
 		this.emitter = new Emitter(this);
