@@ -1,7 +1,7 @@
-import Scene from './scene/scene'
-import Season from './lib/season'
-import Audio from './lib/audio'
-import Emitter from './lib/emitter'
+import Scene from './scene/Scene'
+import Season from './lib/Season'
+import Audio from './lib/Audio'
+import Emitter from './lib/Emitter'
 
 class App {
 

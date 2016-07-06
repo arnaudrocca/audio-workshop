@@ -1,6 +1,6 @@
-import Particle from './particle'
-import AudioGraphics from './audioGraphics'
-import Cursor from './cursor'
+import Particle from './Particle'
+import AudioGraphics from './AudioGraphics'
+import Cursor from './Cursor'
 
 class Emitter {
 
