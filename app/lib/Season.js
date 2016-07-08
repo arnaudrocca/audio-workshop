@@ -20,6 +20,7 @@ class Season {
 
         this.soundPath = `//lab.arnaudrocca.fr/audio-workshop/assets/audio/${ this.name }.mp3`;
 
+        document.getElementById('current-season').innerHTML = this.name;
         document.getElementById('link').style.color = `#${ this.color.substring(2) }`;
 
         let favicon = document.createElement('link');

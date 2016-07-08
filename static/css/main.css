@@ -19,14 +19,27 @@ canvas {
 	position: absolute;
 	margin: 0;
 	padding: 0;
-    bottom: 10px;
-    right: 15px;
     color: #666;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 1rem;
     line-height: .5rem;
+}
+
+.infos--controls {
+    bottom: 10px;
+    left: 15px;
+    text-align: left;
+}
+
+.infos--credits {
+    bottom: 10px;
+    right: 15px;
     text-align: right;
+}
+
+#current-season {
+    text-transform: capitalize;
 }
 
 a {
